@@ -8,7 +8,7 @@ const GAP := 80.0
 const TOP_MARGIN := -100.0
 const BOTTOM_MARGIN := 450.0
 
-var score: int = 0
+var score: int = -1
 var digit_sprites: Array[Texture2D] = []
 
 # Called when the node enters the scene tree for the first time.
@@ -40,17 +40,17 @@ func _on_spawn_pipe() -> void:
 	add_child(pipe)
 
 func update_score_display() -> void:
+	score += 1
 	for child in score_container.get_children():
 		child.queue_free()	
 	
 	print(score)
 	# Cria um sprite para cada dígito
 	for digit_char in str(score):
-		var sprite = Sprite2D.new()
-		sprite.texture = digit_sprites[int(digit_char)]
-		score_container.add_child(sprite)
-	
-	score += 1
+		var rect := TextureRect.new()
+		rect.texture = digit_sprites[int(digit_char)]  
+		#rect.stretch_mode = TextureRect.STRETCH_KEEP
+		score_container.add_child(rect)
 
 func game_over() -> void:
 	print("Game Over Triggered")

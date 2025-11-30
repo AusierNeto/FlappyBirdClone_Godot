@@ -96,6 +96,4 @@ offset_right = 40.0
 offset_bottom = 104.0
 alignment = 1
 
-[node name="DigitSprite" type="Sprite2D" parent="UI/ScoreContainer"]
-
 [connection signal="body_entered" from="ParallaxBackground/Ground/GroundArea" to="." method="_on_area_2d_body_entered"]
