@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://csbq5l7nxy1ek"]
+[gd_scene load_steps=6 format=3 uid="uid://csbq5l7nxy1ek"]
 
 [ext_resource type="PackedScene" uid="uid://c2smuhlqqqrxl" path="res://scenes/bird.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dqjpih1ilo6yu" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://bwi8vd12n0104" path="res://sprites/background-day.png" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://bgmvu7dfo7ftx" path="res://sprites/base.png" id="4_lbhrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(480, 54)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -60,16 +63,11 @@ motion_mirroring = Vector2(480, 0)
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
 offset_left = -1.0
 offset_top = 512.0
-offset_right = 335.0
-offset_bottom = 624.0
-texture = ExtResource("4_lbhrr")
-
-[node name="TextureRect3" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
-offset_left = 144.0
-offset_top = 512.0
 offset_right = 480.0
 offset_bottom = 624.0
 texture = ExtResource("4_lbhrr")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
 offset_left = -1.0
@@ -78,3 +76,14 @@ offset_right = 480.0
 offset_bottom = 756.0
 texture = ExtResource("4_lbhrr")
 flip_v = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="ParallaxBackground/ParallaxLayer2"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer2/Area2D"]
+position = Vector2(239, 540)
+shape = SubResource("RectangleShape2D_lbhrr")
+debug_color = Color(0.65051717, 0.51999944, 5.7756904e-07, 0.41960785)
+
+[connection signal="body_entered" from="ParallaxBackground/ParallaxLayer2/Area2D" to="." method="_on_area_2d_body_entered"]

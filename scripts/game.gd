@@ -23,8 +23,6 @@ func _on_spawn_pipe() -> void:
 	var min_y := TOP_MARGIN + GAP / 2.0
 	var max_y := get_viewport_rect().size.y - BOTTOM_MARGIN - GAP / 2.0
 	var spawn_y := randf_range(min_y, max_y)
-
-	#var spawn_y = randf_range(-100, get_viewport_rect().size.y - 100)
 	
 	pipe.position = Vector2(spawn_x, spawn_y)
 	
@@ -35,3 +33,8 @@ func _on_spawn_pipe() -> void:
 func game_over() -> void:
 	print("Game Over Triggered")
 	get_tree().reload_current_scene()
+
+# Ground Collision
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Bird":
+		game_over()
