@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://l34jwq0bdvlm"]
+[gd_scene load_steps=6 format=3 uid="uid://l34jwq0bdvlm"]
 
 [ext_resource type="Script" uid="uid://cpfmp1yupvuh0" path="res://scripts/pipe.gd" id="1_njovb"]
 [ext_resource type="Texture2D" uid="uid://bbn53cmok1042" path="res://sprites/pipe-green.png" id="2_micxu"]
@@ -8,6 +8,9 @@ size = Vector2(48.999996, 447)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8p0di"]
 size = Vector2(48, 421)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njovb"]
+size = Vector2(3, 80)
 
 [node name="Pipe" type="Node2D"]
 position = Vector2(0, -200)
@@ -22,17 +25,24 @@ texture = ExtResource("2_micxu")
 position = Vector2(0, 401.5)
 texture = ExtResource("2_micxu")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionArea" type="Area2D" parent="."]
 collision_layer = 2
 
-[node name="TopPipeCollision" type="CollisionShape2D" parent="Area2D"]
+[node name="TopPipeCollision" type="CollisionShape2D" parent="CollisionArea"]
 position = Vector2(0.49999812, -64.5)
 shape = SubResource("RectangleShape2D_arpqm")
 debug_color = Color(0.8309229, 0.0014314086, 0.94454485, 0.41960785)
 
-[node name="BottomPipeCollision" type="CollisionShape2D" parent="Area2D"]
+[node name="BottomPipeCollision" type="CollisionShape2D" parent="CollisionArea"]
 position = Vector2(0, 451.5)
 shape = SubResource("RectangleShape2D_8p0di")
 debug_color = Color(0.8258417, 0.0016000586, 0.95543736, 0.41960785)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="ScoringArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringArea"]
+position = Vector2(0, 200)
+shape = SubResource("RectangleShape2D_njovb")
+
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="ScoringArea" to="." method="_on_scoring_area_body_entered"]
