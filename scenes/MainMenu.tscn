@@ -12,8 +12,8 @@ size = Vector2(480, 54)
 script = ExtResource("1_ow34m")
 
 [node name="MenuBackground" type="Sprite2D" parent="."]
-position = Vector2(241.99998, 360.50003)
-scale = Vector2(2.6086955, 2.677903)
+position = Vector2(240.00008, 298)
+scale = Vector2(1.4891304, 1.5955056)
 texture = ExtResource("1_yqorp")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]

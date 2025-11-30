@@ -9,12 +9,11 @@ const TOP_MARGIN := -100.0
 const BOTTOM_MARGIN := 450.0
 
 var score: int = -1
+var is_gameover :bool = false
 var digit_sprites: Array[Texture2D] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Game Ready")
-	
 	spawner.timeout.connect(_on_spawn_pipe)
 	for i in range(10):
 		digit_sprites.append(load("res://sprites/digits/%d.png" %i))
@@ -53,10 +52,23 @@ func update_score_display() -> void:
 		score_container.add_child(rect)
 
 func game_over() -> void:
-	print("Game Over Triggered")
-	get_tree().reload_current_scene()
+	if is_gameover:
+		return
+	is_gameover = true
+	
+	# Stop generating pipe
+	spawner.stop()
+	$Bird.die()
+	
+	await get_tree().create_timer(1.0).timeout
+	_show_game_over()
+	
+func _show_game_over() -> void:
+	var panel = $UI/GameOverPanel
+	panel.visible = true
 
 # Ground Collision
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Bird":
+		$Bird.velocity.y = 0
 		game_over()
