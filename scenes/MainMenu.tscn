@@ -1,22 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://csbq5l7nxy1ek"]
+[gd_scene load_steps=6 format=3 uid="uid://b6v7rch6dobvv"]
 
-[ext_resource type="PackedScene" uid="uid://c2smuhlqqqrxl" path="res://scenes/instances/bird.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://dqjpih1ilo6yu" path="res://scripts/game.gd" id="1_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://bwi8vd12n0104" path="res://sprites/background-day.png" id="3_lnu2h"]
-[ext_resource type="Texture2D" uid="uid://bgmvu7dfo7ftx" path="res://sprites/base.png" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://docay8pry4lk1" path="res://scripts/main_menu.gd" id="1_ow34m"]
+[ext_resource type="Texture2D" uid="uid://dfvwdh0iwcxfv" path="res://sprites/message.png" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://bwi8vd12n0104" path="res://sprites/background-day.png" id="2_2wh52"]
+[ext_resource type="Texture2D" uid="uid://bgmvu7dfo7ftx" path="res://sprites/base.png" id="3_ow34m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l72w3"]
 size = Vector2(480, 54)
 
-[node name="Game" type="Node2D"]
-script = ExtResource("1_yqjtg")
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_ow34m")
 
-[node name="Bird" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(80, 300)
-
-[node name="PipeSpawner" type="Timer" parent="."]
-wait_time = 1.6
-autostart = true
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(241.99998, 360.50003)
+scale = Vector2(2.6086955, 2.677903)
+texture = ExtResource("1_yqorp")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -35,7 +33,7 @@ offset_right = 288.0
 offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_lnu2h")
+texture = ExtResource("2_2wh52")
 expand_mode = 1
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
@@ -51,7 +49,7 @@ offset_right = 496.0
 offset_bottom = 514.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_lnu2h")
+texture = ExtResource("2_2wh52")
 expand_mode = 1
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
@@ -65,7 +63,7 @@ offset_left = -1.0
 offset_top = 512.0
 offset_right = 480.0
 offset_bottom = 624.0
-texture = ExtResource("4_lbhrr")
+texture = ExtResource("3_ow34m")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -74,7 +72,7 @@ offset_left = -1.0
 offset_top = 623.0
 offset_right = 480.0
 offset_bottom = 756.0
-texture = ExtResource("4_lbhrr")
+texture = ExtResource("3_ow34m")
 flip_v = true
 metadata/_edit_use_anchors_ = true
 
@@ -83,7 +81,5 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/Ground/GroundArea"]
 position = Vector2(239, 540)
-shape = SubResource("RectangleShape2D_lbhrr")
+shape = SubResource("RectangleShape2D_l72w3")
 debug_color = Color(0.65051717, 0.51999944, 5.7756904e-07, 0.41960785)
-
-[connection signal="body_entered" from="ParallaxBackground/Ground/GroundArea" to="." method="_on_area_2d_body_entered"]

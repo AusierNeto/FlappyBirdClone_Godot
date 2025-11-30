@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://l34jwq0bdvlm"]
 
-[ext_resource type="Texture2D" uid="uid://bbn53cmok1042" path="res://sprites/pipe-green.png" id="1_8x3ej"]
-[ext_resource type="Script" uid="uid://cpfmp1yupvuh0" path="res://scripts/pipe.gd" id="1_arpqm"]
+[ext_resource type="Script" uid="uid://cpfmp1yupvuh0" path="res://scripts/pipe.gd" id="1_njovb"]
+[ext_resource type="Texture2D" uid="uid://bbn53cmok1042" path="res://sprites/pipe-green.png" id="2_micxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arpqm"]
 size = Vector2(48.999996, 447)
@@ -11,16 +11,16 @@ size = Vector2(48, 421)
 
 [node name="Pipe" type="Node2D"]
 position = Vector2(0, -200)
-script = ExtResource("1_arpqm")
+script = ExtResource("1_njovb")
 
 [node name="TopPipe" type="Sprite2D" parent="."]
 position = Vector2(5.5657356e-06, -0.6646118)
 rotation = 3.1415927
-texture = ExtResource("1_8x3ej")
+texture = ExtResource("2_micxu")
 
 [node name="BottomPipe" type="Sprite2D" parent="."]
 position = Vector2(0, 401.5)
-texture = ExtResource("1_8x3ej")
+texture = ExtResource("2_micxu")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var pipe_scene = preload("res://scenes/pipe.tscn")
+@onready var pipe_scene = preload("res://scenes/instances/pipe.tscn")
 @onready var spawner = $PipeSpawner
 const GAP := 80.0  # espaço para passar
 const TOP_MARGIN := -100.0

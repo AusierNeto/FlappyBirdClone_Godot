@@ -38,10 +38,8 @@ script = ExtResource("1_crnqq")
 shape = SubResource("CircleShape2D_crnqq")
 debug_color = Color(0.8929306, 0.0142395785, 0.78287894, 0.41960785)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_g5k2s")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
 sprite_frames = SubResource("SpriteFrames_bdh3x")
 animation = &"fly"
 frame_progress = 0.44562864
