@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://l34jwq0bdvlm"]
+[gd_scene load_steps=7 format=3 uid="uid://l34jwq0bdvlm"]
 
 [ext_resource type="Script" uid="uid://cpfmp1yupvuh0" path="res://scripts/pipe.gd" id="1_njovb"]
 [ext_resource type="Texture2D" uid="uid://bbn53cmok1042" path="res://sprites/pipe-green.png" id="2_micxu"]
+[ext_resource type="AudioStream" uid="uid://onoqhu8o4si3" path="res://sounds/point.mp3" id="3_micxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arpqm"]
-size = Vector2(48.999996, 447)
+size = Vector2(48.999996, 445.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8p0di"]
-size = Vector2(48, 421)
+size = Vector2(48, 418.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njovb"]
-size = Vector2(3, 80)
+size = Vector2(1.5, 81)
 
 [node name="Pipe" type="Node2D"]
 position = Vector2(0, -200)
@@ -26,23 +27,39 @@ position = Vector2(0, 401.5)
 texture = ExtResource("2_micxu")
 
 [node name="CollisionArea" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 4
 
 [node name="TopPipeCollision" type="CollisionShape2D" parent="CollisionArea"]
-position = Vector2(0.49999812, -64.5)
+position = Vector2(0.49999812, -63.75)
 shape = SubResource("RectangleShape2D_arpqm")
 debug_color = Color(0.8309229, 0.0014314086, 0.94454485, 0.41960785)
 
 [node name="BottomPipeCollision" type="CollisionShape2D" parent="CollisionArea"]
-position = Vector2(0, 451.5)
+position = Vector2(0, 451.375)
 shape = SubResource("RectangleShape2D_8p0di")
 debug_color = Color(0.8258417, 0.0016000586, 0.95543736, 0.41960785)
 
 [node name="ScoringArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringArea"]
-position = Vector2(0, 200)
+position = Vector2(0.25, 200.5)
 shape = SubResource("RectangleShape2D_njovb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="TopPipeCollision" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.49999812, -66)
+shape = SubResource("RectangleShape2D_arpqm")
+debug_color = Color(0.8309229, 0.0014314086, 0.94454485, 0.41960785)
+
+[node name="BottomPipeCollision" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 452.75)
+shape = SubResource("RectangleShape2D_8p0di")
+debug_color = Color(0.8258417, 0.0016000586, 0.95543736, 0.41960785)
+
+[node name="AudioScore" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_micxu")
 
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="ScoringArea" to="." method="_on_scoring_area_body_entered"]

@@ -43,12 +43,10 @@ func update_score_display() -> void:
 	for child in score_container.get_children():
 		child.queue_free()	
 	
-	print(score)
 	# Cria um sprite para cada dígito
 	for digit_char in str(score):
 		var rect := TextureRect.new()
 		rect.texture = digit_sprites[int(digit_char)]  
-		#rect.stretch_mode = TextureRect.STRETCH_KEEP
 		score_container.add_child(rect)
 
 func game_over() -> void:
@@ -57,15 +55,21 @@ func game_over() -> void:
 	is_gameover = true
 	
 	# Stop generating pipe
+	$Bird.die() 
 	spawner.stop()
-	$Bird.die()
 	
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.7).timeout
 	_show_game_over()
 	
 func _show_game_over() -> void:
 	var panel = $UI/GameOverPanel
-	panel.visible = true
+	panel.visible = true  
+	get_tree().paused = true
+
+func _unhandled_input(event):
+	if $UI/GameOverPanel.visible and event.is_action_pressed("ui_accept"):
+		get_tree().paused = false
+		get_tree().reload_current_scene()
 
 # Ground Collision
 func _on_area_2d_body_entered(body: Node2D) -> void:

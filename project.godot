@@ -13,7 +13,7 @@ config_version=5
 config/name="Flappy Bird Clone"
 run/main_scene="uid://b6v7rch6dobvv"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dtq73v77sfbf0"
 
 [display]
 
@@ -21,3 +21,7 @@ window/size/viewport_width=480
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

@@ -10,14 +10,25 @@
 size = Vector2(480, 54)
 
 [node name="Game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_yqjtg")
 
 [node name="Bird" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(80, 300)
+motion_mode = 1
 
 [node name="PipeSpawner" type="Timer" parent="."]
 wait_time = 1.6
 autostart = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, -3)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(239, 540)
+shape = SubResource("RectangleShape2D_lbhrr")
+debug_color = Color(0.65051717, 0.51999944, 5.7756904e-07, 0.41960785)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -97,6 +108,7 @@ offset_top = 64.0
 offset_right = 30.0
 offset_bottom = 104.0
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="GameOverPanel" type="Control" parent="UI"]
 visible = false

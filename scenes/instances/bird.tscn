@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2smuhlqqqrxl"]
+[gd_scene load_steps=9 format=3 uid="uid://c2smuhlqqqrxl"]
 
 [ext_resource type="Script" uid="uid://causgqxcbf6xk" path="res://scripts/bird.gd" id="1_crnqq"]
 [ext_resource type="Texture2D" uid="uid://0b328xaspfiq" path="res://sprites/yellowbird-midflap.png" id="1_g5k2s"]
 [ext_resource type="Texture2D" uid="uid://l5ptx4r7e3hv" path="res://sprites/yellowbird-downflap.png" id="3_twsrt"]
 [ext_resource type="Texture2D" uid="uid://df54ydl3plxyv" path="res://sprites/yellowbird-upflap.png" id="4_b7mtg"]
+[ext_resource type="AudioStream" uid="uid://06yjau52mem7" path="res://sounds/flap.mp3" id="5_xs2hl"]
+[ext_resource type="AudioStream" uid="uid://bfcmcmpo0ybfq" path="res://sounds/flappy-bird-hit-sound.mp3" id="6_s0f57"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_crnqq"]
 radius = 13.5
@@ -43,3 +45,9 @@ visibility_layer = 2
 sprite_frames = SubResource("SpriteFrames_bdh3x")
 animation = &"fly"
 frame_progress = 0.44562864
+
+[node name="AudioFlap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xs2hl")
+
+[node name="AudioCollide" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_s0f57")

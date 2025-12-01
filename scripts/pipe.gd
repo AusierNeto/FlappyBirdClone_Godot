@@ -3,6 +3,8 @@ extends Node2D
 signal hit
 signal score
 
+@onready var audio_score: AudioStreamPlayer2D = $AudioScore
+
 const SPEED = 150
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,4 +20,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_scoring_area_body_entered(body: Node2D) -> void:
 	if body.name == "Bird":
+		audio_score.play()
 		score.emit()
